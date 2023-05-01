@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import stock.MartStock;
+import stock.Stock;
+
 public class StockManager {
 	ArrayList<Stock> stocks=new ArrayList<Stock>();
 	Scanner input;
@@ -9,14 +12,29 @@ public class StockManager {
 	}
 	
 	public void addStock() {
-		Stock stock=new Stock();
-		System.out.print("Stock ID: "); 
-		stock.id=input.nextInt();
-		System.out.print("Stock Item: ");
-		stock.item=input.next();
-		System.out.print("stock Name: ");
-		stock.name=input.next();
-		stocks.add(stock);
+		int kind=0;
+		Stock stock;
+		while(kind!=1&&kind!=2) {
+		  System.out.print("1 for ConveniecneStore");
+		  System.out.print("2 for Mart");
+		  System.out.print("Select num for Stock Kind between 1 and 2 : ");
+		  kind=input.nextInt();
+		  if(kind==1) {
+			 stock=new Stock();
+			 stock.getUserInput(input);
+			 stocks.add(stock);
+			 break;
+		  }
+		  else if(kind==2) {
+			 stock=new MartStock();
+			 stock.getUserInput(input);
+			 stocks.add(stock);
+			 break;
+		  }
+		  else {
+			  System.out.print("Select num for Stock Kind between 1 and 2 : ");
+		  }
+		}
 	}
 	
 	public  void deleteStock() {
@@ -24,7 +42,7 @@ public class StockManager {
 		int stockId = input.nextInt();
 		int index=-1;
 		for(int i=0;i<stocks.size();i++) {
-			if (stocks.get(i).id==stockId) {
+			if (stocks.get(i).getId()==stockId) {
 				index=i;
 				break;
 			}
@@ -45,7 +63,7 @@ public class StockManager {
 		int stockId = input.nextInt();
 		for(int i=0;i<stocks.size();i++) {
 			Stock stock=stocks.get(i);
-		   if (stock.id==stockId) {
+		   if (stock.getId()==stockId) {
 			  int num=-1;
 			  while(num!=5) {
 				System.out.println("***Stocks Info Edit Menu***");
@@ -57,15 +75,18 @@ public class StockManager {
 				num=input.nextInt();
 				if (num==1) {
 					System.out.print("Stock ID:");
-					stock.id=input.nextInt();
+					int id=input.nextInt();
+					stock.setId(id);
 				}
 				else if (num==2) {
 					System.out.print("Stock Item:");
-					stock.item=input.next();
+					String item=input.next();
+					stock.setItem(item);
 				}
 				else if (num==3) {
 					System.out.print("Stock name:");
-					stock.name=input.next();
+					String name=input.next();
+					stock.setName(name);
 				}
 				else if (num ==4) {
 					 break;
@@ -79,6 +100,7 @@ public class StockManager {
 	public  void viewStocks() {
 //		System.out.print("Stock ID: ");
 //		int stocksId = input.nextInt();
+		System.out.println("# of registered stocks:"+stocks.size());
 		for(int i=0;i<stocks.size();i++) {
 			stocks.get(i).printInfo();
 		}
