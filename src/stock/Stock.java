@@ -3,10 +3,35 @@ package stock;
 import java.util.Scanner;
 
 public class Stock {
-	protected StockKind kind=StockKind.ConvenienceStore;
+	protected StockKind kind=StockKind.Cu;
 	protected int id;
 	protected String item;
 	protected String name;
+	
+	public Stock() {
+	}
+	
+	public Stock(StockKind kind) {
+		this.kind=kind;
+	}
+	
+	public Stock(int id,String item) {
+		this.id=id;
+		this.item=item;
+	}
+	
+	public Stock(int id,String item,String name) {
+		this.id=id;
+		this.item=item;
+		this.name=name;
+	}
+	
+	public Stock(StockKind kind,int id,String item,String name) {
+		this.kind=kind;
+		this.id=id;
+		this.item=item;
+		this.name=name;
+	}
 	
 	public StockKind getKind() {
 		return kind;
@@ -40,22 +65,24 @@ public class Stock {
 		this.name = name;
 	}
 	
-	public Stock() {
-	}
-	
-	public Stock(int id,String item) {
-		this.id=id;
-		this.item=item;
-	}
-	
-	public Stock(int id,String item,String name) {
-		this.id=id;
-		this.item=item;
-		this.name=name;
-	}
-	
 	public void printInfo() {
-		System.out.println("id:"+id+" item:"+item+" name:"+name);
+		String skind="none";
+		switch(this.kind) {
+		case Cu:
+			skind="Cu.";
+			break;
+		case Gs25:
+			skind="Gs.";
+			break;
+		case Seveneleven:
+			skind="Seven.";
+			break;
+		case Ministop:
+			skind="Mini";
+			break;
+		default:
+		}
+		System.out.println("kind:"+skind+ "id:"+id+" item:"+item+" name:"+name);
 	}
 	
 	public void getUserInput(Scanner input) {
