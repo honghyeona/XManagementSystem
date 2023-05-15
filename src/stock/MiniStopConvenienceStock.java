@@ -2,14 +2,14 @@ package stock;
 
 import java.util.Scanner;
 
-public class MiniStopConvenienceStock extends Stock {
+public class MiniStopConvenienceStock extends Stock implements StockInput {
+	
+	protected int companyid;
+	protected String companyitem;
 	
 	public MiniStopConvenienceStock(StockKind kind) {
 		super(kind);
 	}
-	
-	protected int companyid;
-	protected String companyitem;
 	
 	public void getUserInput(Scanner input) {
 		System.out.print("Stock ID: "); 

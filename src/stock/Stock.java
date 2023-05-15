@@ -2,7 +2,7 @@ package stock;
 
 import java.util.Scanner;
 
-public class Stock {
+public abstract class Stock {
 	protected StockKind kind=StockKind.Cu;
 	protected int id;
 	protected String item;
@@ -65,38 +65,6 @@ public class Stock {
 		this.name = name;
 	}
 	
-	public void printInfo() {
-		String skind="none";
-		switch(this.kind) {
-		case Cu:
-			skind="Cu.";
-			break;
-		case Gs25:
-			skind="Gs.";
-			break;
-		case Seveneleven:
-			skind="Seven.";
-			break;
-		case Ministop:
-			skind="Mini";
-			break;
-		default:
-		}
-		System.out.println("kind:"+skind+ "id:"+id+" item:"+item+" name:"+name);
-	}
-	
-	public void getUserInput(Scanner input) {
-		System.out.print("Stock ID: "); 
-	    int id=input.nextInt();
-	    this.setId(id);
-	    
-		System.out.print("Stock Item: ");
-		String item=input.next();
-		this.setItem(item);
-		
-		System.out.print("stock Name: ");
-		String name=input.next();
-		this.setName(name);
-	}
+	public abstract void printInfo();
 
 }

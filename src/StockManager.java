@@ -1,13 +1,15 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import stock.Gs25;
+import stock.CuStock;
+import stock.Gs25ConvenienceStock;
 import stock.MiniStopConvenienceStock;
 import stock.Stock;
+import stock.StockInput;
 import stock.StockKind;
 
 public class StockManager {
-	ArrayList<Stock> stocks=new ArrayList<Stock>();
+	ArrayList<StockInput> stocks=new ArrayList<StockInput>();
 	Scanner input;
 	StockManager(Scanner input){
 		this.input=input;
@@ -15,7 +17,7 @@ public class StockManager {
 	
 	public void addStock() {
 		int kind=0;
-		Stock stock;
+		StockInput stockInput;
 		while(kind!=1&&kind!=2) {
 		  System.out.println("1 for Cu");
 		  System.out.println("2 for Gs25 ");
@@ -23,21 +25,21 @@ public class StockManager {
 		  System.out.println("Select num 1, 2 or 3 for Stock Kind : ");
 		  kind=input.nextInt();
 		  if(kind==1) {
-			 stock=new Stock(StockKind.Cu);
-			 stock.getUserInput(input);
-			 stocks.add(stock);
+			 stockInput=new CuStock(StockKind.Cu);
+			 stockInput.getUserInput(input);
+			 stocks.add(stockInput);
 			 break;
 		  }
 		  else if(kind==2) {
-			 stock=new Gs25(StockKind.Gs25);
-			 stock.getUserInput(input);
-			 stocks.add(stock);
+			 stockInput=new Gs25ConvenienceStock(StockKind.Gs25);
+			 stockInput.getUserInput(input);
+			 stocks.add(stockInput);
 			 break;
 		  }
 		  else if(kind==3) {
-				 stock=new MiniStopConvenienceStock(StockKind.Ministop);
-				 stock.getUserInput(input);
-				 stocks.add(stock);
+				 stockInput=new MiniStopConvenienceStock(StockKind.Ministop);
+				 stockInput.getUserInput(input);
+				 stocks.add(stockInput);
 				 break;
 		  }
 		  else {
@@ -71,8 +73,8 @@ public class StockManager {
 		System.out.print("Stock ID: ");
 		int stockId = input.nextInt();
 		for(int i=0;i<stocks.size();i++) {
-			Stock stock=stocks.get(i);
-		   if (stock.getId()==stockId) {
+			StockInput stockInput=stocks.get(i);
+		   if (stockInput.getId()==stockId) {
 			  int num=-1;
 			  while(num!=5) {
 				System.out.println("***Stocks Info Edit Menu***");
@@ -85,17 +87,17 @@ public class StockManager {
 				if (num==1) {
 					System.out.print("Stock ID:");
 					int id=input.nextInt();
-					stock.setId(id);
+					stockInput.setId(id);
 				}
 				else if (num==2) {
 					System.out.print("Stock Item:");
 					String item=input.next();
-					stock.setItem(item);
+					stockInput.setItem(item);
 				}
 				else if (num==3) {
 					System.out.print("Stock name:");
 					String name=input.next();
-					stock.setName(name);
+					stockInput.setName(name);
 				}
 				else if (num ==4) {
 					 break;
