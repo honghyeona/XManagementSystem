@@ -1,10 +1,16 @@
 package stock;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import Exception.ItemFormatException;
 
-public abstract class Stock implements StockInput{
+public abstract class Stock implements StockInput, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 231335948922145205L;
+	
 	protected StockKind kind=StockKind.Cu;
 	protected int id;
 	protected String item;

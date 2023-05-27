@@ -13,5 +13,4 @@ public class Gs25ConvenienceStock extends CommonStock{
 		setStockItemwithYN(input);
 		setStockName(input);
 	}
-	
 }

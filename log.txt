@@ -1,0 +1,2 @@
+5월 27, 2023 5:10:33 오후 log.EventLogger log
+INFO: view a list of stock
