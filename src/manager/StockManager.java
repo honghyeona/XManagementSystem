@@ -1,3 +1,4 @@
+package manager;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -6,6 +7,7 @@ import java.util.Scanner;
 import stock.CuStock;
 import stock.Gs25ConvenienceStock;
 import stock.MiniStopConvenienceStock;
+import stock.Stock;
 import stock.StockInput;
 import stock.StockKind;
 
@@ -18,6 +20,10 @@ public class StockManager implements Serializable {
 	ArrayList<StockInput> stocks=new ArrayList<StockInput>();
 	transient Scanner input;
 	StockManager(Scanner input){
+		this.input=input;
+	}
+	
+	public void setScanner(Scanner input) {
 		this.input=input;
 	}
 	
@@ -127,6 +133,14 @@ public class StockManager implements Serializable {
 		for(int i=0;i<stocks.size();i++) {
 			stocks.get(i).printInfo();
 		}
+	}
+	
+	public int size() {
+		return stocks.size();
+	}
+	
+	public StockInput get(int index) {
+		return (Stock) stocks.get(index);
 	}
 	
 	public void showEditMenu() {

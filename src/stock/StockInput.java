@@ -10,7 +10,11 @@ public interface StockInput {
 	
 	public void setId(int id);
 	
+	public String getItem();
+	
 	public void setItem(String item) throws ItemFormatException;
+	
+	public String getName();
 	
 	public void setName(String name);
 	
