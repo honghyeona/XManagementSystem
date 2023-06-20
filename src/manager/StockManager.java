@@ -27,6 +27,16 @@ public class StockManager implements Serializable {
 		this.input=input;
 	}
 	
+	public void addStock(String id,String item,String name) {
+		StockInput stockInput=new CuStock(StockKind.Cu);
+		stockInput.getUserInput(input);
+		stocks.add(stockInput);
+	}
+	
+	public void addStock(StockInput stockInput) {
+		stocks.add(stockInput);
+	}
+	
 	public void addStock() {
 		int kind=0;
 		StockInput stockInput;

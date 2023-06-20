@@ -7,12 +7,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import event.StockAdderCancelListener;
+import event.StockAdderListener;
+import manager.StockManager;
+
 public class StockAdder extends JPanel {
 	
 	WindowFrame frame;
+	StockManager stockManager;
 	
-	public StockAdder(WindowFrame frame) {
+	public StockAdder(WindowFrame frame,StockManager stockManager) {
 		this.frame=frame;
+		this.stockManager= stockManager;
 		
 		JPanel panel=new JPanel(new SpringLayout());
 		panel.setLayout(new SpringLayout());
@@ -32,11 +38,18 @@ public class StockAdder extends JPanel {
 		JLabel labelName=new JLabel("Name: ",JLabel.TRAILING);
 		JTextField fieldName=new JTextField(10);
 		labelName.setLabelFor(fieldName);
+		
+		JButton saveButton=new JButton("save");
+		saveButton.addActionListener(new StockAdderListener(fieldID,fieldItem,fieldName,stockManager));
+		
+		JButton cancelButton=new JButton("cancel");
+		cancelButton.addActionListener(new StockAdderCancelListener(frame));
+		
 		panel.add(labelName);
 		panel.add(fieldName);
 		
-		panel.add(new JButton("save"));
-		panel.add(new JButton("cancel"));
+		panel.add(saveButton);
+		panel.add(cancelButton);
 		
 		SpringUtilities.makeCompactGrid(panel,4, 2, 6, 6, 6, 6);
 		
